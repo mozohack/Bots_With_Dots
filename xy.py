@@ -145,7 +145,7 @@ def doMyTask(data):
 	print(accuracy_score(y_test, y_pred,normalize=False))
 	# -----------------------------------------------------
 
-	psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
+	psymptoms = [data[0],data[1],data[2],data[3],data[4]]
 
 	for k in range(0,len(l1)):
 		for z in psymptoms:
@@ -162,12 +162,14 @@ def doMyTask(data):
 			h='yes'
 			break
 
-	if (h=='yes'):
-		t2.delete("1.0", END)
-		t2.insert(END, disease[a])
-	else:
-		t2.delete("1.0", END)
-		t2.insert(END, "Not Found")
+	return disease[predicted]
+
+	# if (h=='yes'):
+	# 	t2.delete("1.0", END)
+	# 	t2.insert(END, disease[a])
+	# else:
+	# 	t2.delete("1.0", END)
+	# 	t2.insert(END, "Not Found")
 
 
 # def NaiveBayes():
