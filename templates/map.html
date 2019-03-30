@@ -55,6 +55,8 @@ body {
                 center: myLocation,
                 zoom: 10
               });
+		    
+	     var marker = new google.maps.Marker({position: myLocation, map: map});
 
               var service = new google.maps.places.PlacesService(map);
               service.nearbySearch({
