@@ -86,7 +86,9 @@ $list=array('back_pain','constipation','abdominal_pain','diarrhoea','mild_fever'
 
 </form>
 
-Your output for Random Forest is <b>{{ randomText }}</b>
+Your output for Random Forest is <b>{{ randomText }}</b><br>
+Your output for Decision Tree is <b>{{ randomText2 }}</b><br>
+{{randomText3}}
 
 </body>
 </html>
