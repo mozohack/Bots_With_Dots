@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 
 
-l1=['back_pain','constipation','abdominal_pain','diarrhoea','mild_fever','yellow_urine',
+l1=['None','back_pain','constipation','abdominal_pain','diarrhoea','mild_fever','yellow_urine',
 	'yellowing_of_eyes','acute_liver_failure','fluid_overload','swelling_of_stomach',
 	'swelled_lymph_nodes','malaise','blurred_and_distorted_vision','phlegm','throat_irritation',
 	'redness_of_eyes','sinus_pressure','runny_nose','congestion','chest_pain','weakness_in_limbs',
