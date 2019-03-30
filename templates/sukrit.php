@@ -85,9 +85,14 @@ $list=array('back_pain','constipation','abdominal_pain','diarrhoea','mild_fever'
 <input type="submit" name="submitButton" id="submitButton">
 
 </form>
+<br>
+{{sometext}}<br><b>
+{% for i in requestData %}
+{{i}}<br>
+{% endfor %}</b><br>
 
-Your output for Random Forest is <b>{{ randomText }}</b><br>
-Your output for Decision Tree is <b>{{ randomText2 }}</b><br>
+<b>{{ randomText }}</b><br>
+<b>{{ randomText2 }}</b><br>
 {{randomText3}}
 
 </body>
