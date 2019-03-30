@@ -173,8 +173,8 @@ def Symptoms():
 	
 
 	result2 = doMyTask2([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])	
-	return render_template('sukrit.php', randomText=result, randomText2=result2, randomText3="Considering the above symptoms both the diseases predicted by the two algorithms are possible")	
+	return render_template('sukrit.php', requestData=[Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5], sometext="You gave the following symptoms:",randomText="Your output for Random Forest is "+result, randomText2="Your output for Decision Tree is "+result2, randomText3="Considering the above symptoms both the diseases predicted by the two algorithms are possible")	
 
 if __name__ == '__main__':
-	app.run(port='1234', debug=True)
+	app.run(port=1234, debug=True)
 
