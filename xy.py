@@ -42,99 +42,89 @@ disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reactio
 
 
 
-def doMyTask(data):
+
+	# TESTING DATA df -------------------------------------------------------------------------------------
+df=pd.read_csv("Training.csv")
+
+df.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic cholestasis':3,'Drug Reaction':4,
+'Peptic ulcer diseae':5,'AIDS':6,'Diabetes ':7,'Gastroenteritis':8,'Bronchial Asthma':9,'Hypertension ':10,
+'Migraine':11,'Cervical spondylosis':12,
+'Paralysis (brain hemorrhage)':13,'Jaundice':14,'Malaria':15,'Chicken pox':16,'Dengue':17,'Typhoid':18,'hepatitis A':19,
+'Hepatitis B':20,'Hepatitis C':21,'Hepatitis D':22,'Hepatitis E':23,'Alcoholic hepatitis':24,'Tuberculosis':25,
+'Common Cold':26,'Pneumonia':27,'Dimorphic hemmorhoids(piles)':28,'Heart attack':29,'Varicose veins':30,'Hypothyroidism':31,
+'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
+'(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
+'Impetigo':40}},inplace=True)
+
+# print(df.head())
+
+X= df[l1]
+
+y = df[["prognosis"]]
+np.ravel(y)
+# print(y)
+
+# TRAINING DATA tr --------------------------------------------------------------------------------
+tr=pd.read_csv("Testing.csv")
+tr.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic cholestasis':3,'Drug Reaction':4,
+'Peptic ulcer diseae':5,'AIDS':6,'Diabetes ':7,'Gastroenteritis':8,'Bronchial Asthma':9,'Hypertension ':10,
+'Migraine':11,'Cervical spondylosis':12,
+'Paralysis (brain hemorrhage)':13,'Jaundice':14,'Malaria':15,'Chicken pox':16,'Dengue':17,'Typhoid':18,'hepatitis A':19,
+'Hepatitis B':20,'Hepatitis C':21,'Hepatitis D':22,'Hepatitis E':23,'Alcoholic hepatitis':24,'Tuberculosis':25,
+'Common Cold':26,'Pneumonia':27,'Dimorphic hemmorhoids(piles)':28,'Heart attack':29,'Varicose veins':30,'Hypothyroidism':31,
+'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
+'(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
+'Impetigo':40}},inplace=True)
+
+X_test= tr[l1]
+y_test = tr[["prognosis"]]
+np.ravel(y_test)
 
 
-# from gui_stuff import *
 
-	
-
-
+def doMyTask2(data):
+	from sklearn import tree
 	l2=[]
 	for x in range(0,len(l1)):
 		l2.append(0)
+	clf3 = tree.DecisionTreeClassifier()   # empty model of the decision tree
+	clf3 = clf3.fit(X,y)
 
-	# TESTING DATA df -------------------------------------------------------------------------------------
-	df=pd.read_csv("Training.csv")
+	# calculating accuracy-------------------------------------------------------------------
+	from sklearn.metrics import accuracy_score
+	y_pred=clf3.predict(X_test)
+	print(accuracy_score(y_test, y_pred))
+	print(accuracy_score(y_test, y_pred,normalize=False))
+	# -----------------------------------------------------
 
-	df.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic cholestasis':3,'Drug Reaction':4,
-	'Peptic ulcer diseae':5,'AIDS':6,'Diabetes ':7,'Gastroenteritis':8,'Bronchial Asthma':9,'Hypertension ':10,
-	'Migraine':11,'Cervical spondylosis':12,
-	'Paralysis (brain hemorrhage)':13,'Jaundice':14,'Malaria':15,'Chicken pox':16,'Dengue':17,'Typhoid':18,'hepatitis A':19,
-	'Hepatitis B':20,'Hepatitis C':21,'Hepatitis D':22,'Hepatitis E':23,'Alcoholic hepatitis':24,'Tuberculosis':25,
-	'Common Cold':26,'Pneumonia':27,'Dimorphic hemmorhoids(piles)':28,'Heart attack':29,'Varicose veins':30,'Hypothyroidism':31,
-	'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
-	'(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
-	'Impetigo':40}},inplace=True)
+	psymptoms = [data[0],data[1],data[2],data[3],data[4]]
 
-	# print(df.head())
+	for k in range(0,len(l1)):
+		# print (k,)
+		for z in psymptoms:
+			if(z==l1[k]):
+				l2[k]=1
 
-	X= df[l1]
+	inputtest = [l2]
+	predict = clf3.predict(inputtest)
+	predicted=predict[0]
 
-	y = df[["prognosis"]]
-	np.ravel(y)
-	# print(y)
+	h='no'
+	for a in range(0,len(disease)):
+		if(predicted == a):
+			h='yes'
+			break
 
-	# TRAINING DATA tr --------------------------------------------------------------------------------
-	tr=pd.read_csv("Testing.csv")
-	tr.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic cholestasis':3,'Drug Reaction':4,
-	'Peptic ulcer diseae':5,'AIDS':6,'Diabetes ':7,'Gastroenteritis':8,'Bronchial Asthma':9,'Hypertension ':10,
-	'Migraine':11,'Cervical spondylosis':12,
-	'Paralysis (brain hemorrhage)':13,'Jaundice':14,'Malaria':15,'Chicken pox':16,'Dengue':17,'Typhoid':18,'hepatitis A':19,
-	'Hepatitis B':20,'Hepatitis C':21,'Hepatitis D':22,'Hepatitis E':23,'Alcoholic hepatitis':24,'Tuberculosis':25,
-	'Common Cold':26,'Pneumonia':27,'Dimorphic hemmorhoids(piles)':28,'Heart attack':29,'Varicose veins':30,'Hypothyroidism':31,
-	'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
-	'(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
-	'Impetigo':40}},inplace=True)
-
-	X_test= tr[l1]
-	y_test = tr[["prognosis"]]
-	np.ravel(y_test)
-	# ------------------------------------------------------------------------------------------------------
-
-	# def DecisionTree():
-
-	#     from sklearn import tree
-
-	#     clf3 = tree.DecisionTreeClassifier()   # empty model of the decision tree
-	#     clf3 = clf3.fit(X,y)
-
-	#     # calculating accuracy-------------------------------------------------------------------
-	#     from sklearn.metrics import accuracy_score
-	#     y_pred=clf3.predict(X_test)
-	#     print(accuracy_score(y_test, y_pred))
-	#     print(accuracy_score(y_test, y_pred,normalize=False))
-	#     # -----------------------------------------------------
-
-	#     psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-
-	#     for k in range(0,len(l1)):
-	#         # print (k,)
-	#         for z in psymptoms:
-	#             if(z==l1[k]):
-	#                 l2[k]=1
-
-	#     inputtest = [l2]
-	#     predict = clf3.predict(inputtest)
-	#     predicted=predict[0]
-
-	#     h='no'
-	#     for a in range(0,len(disease)):
-	#         if(predicted == a):
-	#             h='yes'
-	#             break
+	return disease[predicted]
 
 
-	#     if (h=='yes'):
-	#         t1.delete("1.0", END)
-	#         t1.insert(END, disease[a])
-	#     else:
-	#         t1.delete("1.0", END)
-	#         t1.insert(END, "Not Found")
 
+def doMyTask(data):
 
-# def randomforest():
 	from sklearn.ensemble import RandomForestClassifier
+	l2=[]
+	for x in range(0,len(l1)):
+		l2.append(0)
 	clf4 = RandomForestClassifier()
 	clf4 = clf4.fit(X,np.ravel(y))
 
@@ -164,63 +154,7 @@ def doMyTask(data):
 
 	return disease[predicted]
 
-	# if (h=='yes'):
-	# 	t2.delete("1.0", END)
-	# 	t2.insert(END, disease[a])
-	# else:
-	# 	t2.delete("1.0", END)
-	# 	t2.insert(END, "Not Found")
-
-
-# def NaiveBayes():
-#     from sklearn.naive_bayes import GaussianNB
-#     gnb = GaussianNB()
-#     gnb=gnb.fit(X,np.ravel(y))
-
-#     # calculating accuracy-------------------------------------------------------------------
-#     from sklearn.metrics import accuracy_score
-#     y_pred=gnb.predict(X_test)
-#     print(accuracy_score(y_test, y_pred))
-#     print(accuracy_score(y_test, y_pred,normalize=False))
-#     # -----------------------------------------------------
-
-#     psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-#     for k in range(0,len(l1)):
-#         for z in psymptoms:
-#             if(z==l1[k]):
-#                 l2[k]=1
-
-#     inputtest = [l2]
-#     predict = gnb.predict(inputtest)
-#     predicted=predict[0]
-
-#     h='no'
-#     for a in range(0,len(disease)):
-#         if(predicted == a):
-#             h='yes'
-#             break
-
-#     if (h=='yes'):
-#         t3.delete("1.0", END)
-#         t3.insert(END, disease[a])
-#     else:
-#         t3.delete("1.0", END)
-#         t3.insert(END, "Not Found")
-
-# @app.route('/', methods=['GET'])
-# def index():
-# 	return 'Hello world!'
-
-# @app.route('/demo/<something>', methods=['GET'])
-# def demo(something):
-# 	return render_template('sukrit.htm', randomText=something)
-
-# # getting data from user via URL
-# @app.route('/task/<val1>/<val2>/<val3>', methods=['GET'])
-# def task(val1, val2, val3):
-# 	result = doMyTask([val1, val2, val3])
-# 	return render_template('sukrit.htm', randomText=result)	
-
+	
 @app.route('/acceptor', methods=['GET'])
 def acceptor():
 	return render_template('sukrit.php',data=l1)
@@ -235,7 +169,11 @@ def Symptoms():
 	Symptom_5 = request.form['Symptom5']
 
 	result = doMyTask([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])
-	return render_template('sukrit.php', randomText=result)	
+	
+
+	result2 = doMyTask2([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])	
+	return render_template('sukrit.php', randomText=result, randomText2=result2, randomText3="Considering the above symptoms both the diseases predicted by the two algorithms are possible")	
 
 if __name__ == '__main__':
 	app.run(port='1234', debug=True)
+
