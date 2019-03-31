@@ -27,9 +27,6 @@ l1=['None','back_pain','constipation','abdominal_pain','diarrhoea','mild_fever',
 	'silver_like_dusting','small_dents_in_nails','inflammatory_nails','blister','red_sore_around_nose',
 	'yellow_crust_ooze']
 
-
-
-
 disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reaction',
 	'Peptic ulcer diseae','AIDS','Diabetes','Gastroenteritis','Bronchial Asthma','Hypertension',
 	' Migraine','Cervical spondylosis',
@@ -39,11 +36,6 @@ disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reactio
 	'Heartattack','Varicoseveins','Hypothyroidism','Hyperthyroidism','Hypoglycemia','Osteoarthristis',
 	'Arthritis','(vertigo) Paroymsal  Positional Vertigo','Acne','Urinary tract infection','Psoriasis',
 	'Impetigo']
-
-
-
-
-
 
 	# TESTING DATA df -------------------------------------------------------------------------------------
 df=pd.read_csv("Training.csv")
