@@ -12,6 +12,9 @@ a. After prediction of the disease it would show more articles about the disease
 b. Doctogram does not prescribe any kind of medication and is only meant for giving the user a probable disease that he might be suffering from based on his Symptoms.
 c. Doctogram would provide information about nearest health care units which provides treatment for the disease.
 
+## Approach
+We have made use of two classifying algorithms- Random Forest Classification and Decision Tree Classification.As input,symptoms are provided for the model.Based on the symptoms input, the disease is predicted. A hyperlink is generated with a link to that particular disease so that the user can read up more about it. Another feature is the option of looking up Hospitals within a 4km radius from your current location to make an appointment and get checkup up with ease at the earliest.
+
 ## Usage
 In Git Bash
 ```bash
