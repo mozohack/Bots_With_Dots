@@ -91,9 +91,29 @@ $list=array('back_pain','constipation','abdominal_pain','diarrhoea','mild_fever'
 {{i}}<br>
 {% endfor %}</b><br>
 
-<b>{{ randomText }}</b><br>
-<b>{{ randomText2 }}</b><br>
+{% if (disease1!=disease2) and (randomText6) %}
+
+<b>{{ randomText }}</b><a href="{{randomText5}}" target="_blank">(Know More...)</a><br>
+<b>{{ randomText2 }}</b><a href="{{randomText5}}" target="_blank">(Know More...)</a><br><br>
 {{randomText3}}
+
+{% endif %}
+
+
+{% if (disease1==disease2) and (randomText5) %}
+<b>{{ randomText }}</b><a href="{{randomText5}}" target="_blank">(Know More...)</a><br>
+{% endif %}
+
+
+<!-- {% if (disease1==disease2) and (randomText5) %}
+<button onclick="window.open('{{randomText5}}')" class="w3-btn w3-border w3-xlarge"  style="color:#fff">Try our Disease Predictor</button>
+
+{% elif (disease1!=disease2) and (randomText6) %}
+<button onclick="window.open('{{randomText5}}')" class="w3-btn w3-border w3-xlarge"  style="color:#fff">Try our Disease Predictor</button>
+
+<button onclick="window.open('{{randomText6}}')" class="w3-btn w3-border w3-xlarge"  style="color:#fff">Try our Disease Predictor</button>
+
+{% endif %} -->
 
 </body>
 </html>
