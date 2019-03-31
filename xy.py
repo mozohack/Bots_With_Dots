@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import numpy as np
 import pandas as pd
+from alter import alter
 
 app = Flask(__name__)
 
@@ -158,7 +159,11 @@ def doMyTask(data):
 	
 @app.route('/acceptor', methods=['GET'])
 def acceptor():
-	return render_template('sukrit.php',data=l1)
+	return render_template('prediction.php',data=l1)
+
+@app.route('/map', methods=['GET'])
+def map():
+	return render_template('map.html')
 
 # getting data from user via form
 @app.route('/acceptor', methods=['POST'])
@@ -170,11 +175,14 @@ def Symptoms():
 	Symptom_5 = request.form['Symptom5']
 
 	result = doMyTask([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])
+	result=alter(result)
 	
 
-	result2 = doMyTask2([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])	
-	return render_template('sukrit.php', data=l1, requestData=[Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5], sometext="You gave the following symptoms:",randomText="Your output for Random Forest is "+result, randomText2="Your output for Decision Tree is "+result2, randomText3="Considering the above symptoms both the diseases predicted by the two algorithms are possible", randomText5='https://en.wikipedia.org/wiki/'+result, randomText6='https://en.wikipedia.org/wiki/'+result2,disease1=result,disease2=result2)	
+	result2 = doMyTask2([Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5])
+	result2=alter(result2)
+
+
+	return render_template('prediction.php', data=l1, requestData=[Symptom_1,Symptom_2,Symptom_3,Symptom_4,Symptom_5], sometext="You gave the following symptoms:",randomText="Prediction using Random Forest Algorithm is "+result, randomText2="Prediction using Decision Tree Algorithm is "+result2,randomText9="Prediction using Decision Tree and Random Forest Algorithms is "+result, randomText3="**Considering the above symptoms both the diseases predicted by the two algorithms are possible**", randomText5='https://en.wikipedia.org/wiki/'+result, randomText6='https://en.wikipedia.org/wiki/'+result2,disease1=result,disease2=result2)	
 
 if __name__ == '__main__':
 	app.run(port=1234, debug=True)
-
